@@ -47,18 +47,6 @@
     /* ── 時間欄不換行 ── */
     .time-cell { white-space: nowrap; }
 
-    /* ── 最上方警示斜紋條 ── */
-    .warning-stripe {
-      height: 6px;
-      background: repeating-linear-gradient(
-        -45deg,
-        #c05313,
-        #c05313 8px,
-        #0d2240 8px,
-        #0d2240 16px
-      );
-    }
-
     /* ── Hero ── */
     .hero-bg {
       /* 深藍遮罩 + 活動照片；最後的 #0d2240 為照片載入失敗時的 fallback 底色 */
@@ -204,9 +192,6 @@
 </head>
 <body>
 
-<!-- ① 警示斜紋條 -->
-<div class="warning-stripe"></div>
-
 <!-- ④ Hero -->
 <section class="hero-bg pb-20 pt-14 md:pt-20 md:pb-28 relative z-10">
   <div class="max-w-3xl mx-auto px-4 text-center text-white relative z-10">
@@ -226,7 +211,7 @@
 
     <p class="text-sm md:text-base mb-6 leading-loose"
        style="color:rgba(255,255,255,.82); max-width:560px; margin:0 auto 1.5rem;">
-      你的現場問題是最關鍵的素材・四場活動後帶走可在大樓推動的防災行動方案
+      你的現場問題是最關鍵的素材・四場活動後帶走大樓防淹水行動方案
     </p>
 
     <!-- 快速資訊膠囊 -->
@@ -254,62 +239,40 @@
 </section>
 
 
-<!-- ⑤ 統計數據 -->
-<section style="background:#0d2240;" class="py-10 md:py-14">
-  <div class="max-w-5xl mx-auto px-4">
-    <p class="text-center font-bold text-base md:text-lg mb-1" style="color:#fb923c;">
-      高雄都會區集合式住宅・面對極端降雨的共同課題
-    </p>
-    <p class="text-center text-xs mb-8" style="color:rgba(255,255,255,.5);">
-      問題不是設備不足，而是社區缺乏防災共識與行動機制
-    </p>
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-6">
-      <div class="text-center py-4 px-2 rounded-xl" style="background:rgba(255,255,255,.06);">
-        <div class="stat-num" style="font-size:2rem;">地下室</div>
-        <div class="text-xs md:text-sm mt-2 font-medium" style="color:rgba(255,255,255,.7);">停車場與機電配電集中<br>淹水損失最大</div>
-      </div>
-      <div class="text-center py-4 px-2 rounded-xl" style="background:rgba(255,255,255,.06);">
-        <div class="stat-num" style="font-size:2rem;">停電</div>
-        <div class="text-xs md:text-sm mt-2 font-medium" style="color:rgba(255,255,255,.7);">電梯、抽水、門禁同時失效<br>高樓層住戶易受困</div>
-      </div>
-      <div class="text-center py-4 px-2 rounded-xl" style="background:rgba(255,255,255,.06);">
-        <div class="stat-num" style="font-size:2rem;">缺共識</div>
-        <div class="text-xs md:text-sm mt-2 font-medium" style="color:rgba(255,255,255,.7);">多數社區沒有<br>防汛分工與演練</div>
-      </div>
-      <div class="text-center py-4 px-2 rounded-xl" style="background:rgba(255,255,255,.06);">
-        <div class="stat-num" style="font-size:2rem;">缺行動</div>
-        <div class="text-xs md:text-sm mt-2 font-medium" style="color:rgba(255,255,255,.7);">沒有可立即執行的<br>應變流程</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ⑥ 為什麼需要這個計畫 -->
+<!-- ⑤ 為什麼需要這個計畫（整合風險課題與三大理由）-->
 <section class="py-12 md:py-16 bg-white">
   <div class="max-w-5xl mx-auto px-4">
-    <h2 class="text-xl md:text-2xl font-black text-center mb-1" style="color:#0d2240;">
+    <h2 class="text-xl md:text-2xl font-black text-center mb-3" style="color:#0d2240;">
       為什麼需要這個計畫？
     </h2>
+    <p class="text-center text-sm md:text-base mb-1" style="color:#475569;">
+      面對極端降雨，高雄都會區集合式住宅的共同課題
+    </p>
+    <p class="text-center text-xs md:text-sm" style="color:#94a3b8;">
+      問題不是設備不足，而是社區缺乏防災共識與行動機制
+    </p>
     <span class="section-rule"></span>
     <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
 
+      <!-- 風險：地下室＋停電 -->
       <div class="why-card" style="background:#f0f6ff; border-top:4px solid #1a3a6e;">
         <div class="text-3xl mb-3">🌧</div>
-        <h3 class="font-bold text-xl mb-3" style="color:#1a3a6e;">颱風來臨，地下室積水的損失誰承擔？</h3>
+        <h3 class="font-bold text-xl mb-3" style="color:#1a3a6e;">水患衝擊，集中在地下室與機電</h3>
         <p class="text-lg leading-relaxed" style="color:#475569;">
-          強降雨來臨時，地下室的停車場與機電設備往往首當其衝。了解自家大樓的風險，才能在下一次颱風前提早準備。
+          強降雨來臨時，<strong>地下室</strong>的停車場與機電配電首當其衝、淹水損失最大；一旦<strong>停電</strong>，電梯、抽水、門禁同時失效，高樓層住戶容易受困。了解自家大樓的風險，才能在下一次颱風前提早準備。
         </p>
       </div>
 
+      <!-- 缺口：缺共識＋缺行動 -->
       <div class="why-card" style="background:#fff7ed; border-top:4px solid #e8651a;">
         <div class="text-3xl mb-3">🏢</div>
-        <h3 class="font-bold text-xl mb-3" style="color:#9a3412;">颱風來了，你們大樓有應對的方法嗎？</h3>
+        <h3 class="font-bold text-xl mb-3" style="color:#9a3412;">多數社區，缺共識也缺行動</h3>
         <p class="text-lg leading-relaxed" style="color:#475569;">
-          誰關防水閘門？誰協助行動不便的鄰居？多數社區沒有分工、沒有演練。防災靠的不是設備，是平時建好的共識。
+          誰關防水閘門？誰協助行動不便的鄰居？多數社區沒有防汛<strong>分工與演練</strong>，也沒有可立即執行的<strong>應變流程</strong>。防災靠的不是設備，是平時建好的共識與行動機制。
         </p>
       </div>
 
+      <!-- 解方：帶行動方案回去 -->
       <div class="why-card" style="background:#f0fdf4; border-top:4px solid #16a34a;">
         <div class="text-3xl mb-3">🤝</div>
         <h3 class="font-bold text-xl mb-3" style="color:#15803d;">你帶問題來，帶行動方案回去</h3>
