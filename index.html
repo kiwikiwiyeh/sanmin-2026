@@ -192,6 +192,20 @@
     /* ── 主辦單位連結（無底線，hover 變色）── */
     .org-link { color: #fff; text-decoration: none; transition: color .15s; }
     .org-link:hover { color: #fb923c; }
+
+    /* ── 相片牆 + 燈箱 ── */
+    #gallery-1 img { cursor: zoom-in; transition: opacity .15s; }
+    #gallery-1 img:hover { opacity: .85; }
+    .lightbox { position: fixed; inset: 0; background: rgba(0,0,0,.92); display: none; align-items: center; justify-content: center; z-index: 100; }
+    .lightbox.open { display: flex; }
+    .lightbox-img { max-width: 92vw; max-height: 86vh; border-radius: 8px; box-shadow: 0 12px 48px rgba(0,0,0,.6); }
+    .lightbox button { position: absolute; background: rgba(255,255,255,.14); border: none; color: #fff; cursor: pointer; }
+    .lightbox button:hover { background: rgba(255,255,255,.28); }
+    .lb-close { top: 14px; right: 18px; font-size: 2rem; line-height: 1; width: 44px; height: 44px; border-radius: 9999px; }
+    .lb-nav { top: 50%; transform: translateY(-50%); font-size: 2.2rem; line-height: 1; width: 46px; height: 64px; border-radius: 8px; }
+    .lb-prev { left: 12px; }
+    .lb-next { right: 12px; }
+    .lb-count { position: absolute; bottom: 18px; left: 0; right: 0; text-align: center; color: rgba(255,255,255,.85); font-size: 1rem; }
   </style>
 </head>
 <body>
@@ -325,7 +339,7 @@
         <!-- 📸 活動花絮 -->
         <div class="mb-5">
           <p class="font-bold mb-3" style="color:#0d2240;">📸 活動花絮</p>
-          <div class="grid grid-cols-2 md:grid-cols-3 gap-2">
+          <div class="grid grid-cols-2 md:grid-cols-3 gap-2" id="gallery-1">
             <img src="assets/event1-1.jpg" alt="第 1 場開幕及計畫說明會活動花絮 1" loading="lazy" class="w-full rounded-lg" style="aspect-ratio:4/3; object-fit:cover;">
             <img src="assets/event1-2.jpg" alt="第 1 場開幕及計畫說明會活動花絮 2" loading="lazy" class="w-full rounded-lg" style="aspect-ratio:4/3; object-fit:cover;">
             <img src="assets/event1-3.jpg" alt="第 1 場開幕及計畫說明會活動花絮 3" loading="lazy" class="w-full rounded-lg" style="aspect-ratio:4/3; object-fit:cover;">
@@ -626,6 +640,16 @@
 </footer>
 
 
+<!-- 燈箱（活動花絮點擊看大圖）-->
+<div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-hidden="true">
+  <button class="lb-close" id="lb-close" aria-label="關閉">×</button>
+  <button class="lb-nav lb-prev" id="lb-prev" aria-label="上一張">‹</button>
+  <img class="lightbox-img" id="lb-img" src="" alt="">
+  <button class="lb-nav lb-next" id="lb-next" aria-label="下一張">›</button>
+  <div class="lb-count" id="lb-count"></div>
+</div>
+
+
 <script>
   // ── 各場報名截止自動判斷 ──
   (function () {
@@ -647,6 +671,35 @@
     }
     closeIfExpired('btn-1', 'status-1', '2026-06-25T23:59:59+08:00');
     closeIfExpired('btn-2', 'status-2', '2026-07-03T23:59:59+08:00');
+  })();
+
+  // ── 活動花絮燈箱 ──
+  (function () {
+    var imgs = [].slice.call(document.querySelectorAll('#gallery-1 img'));
+    var lb = document.getElementById('lightbox');
+    if (!imgs.length || !lb) return;
+    var lbImg = document.getElementById('lb-img');
+    var lbCount = document.getElementById('lb-count');
+    var idx = 0;
+    function show(i) {
+      idx = (i + imgs.length) % imgs.length;
+      lbImg.src = imgs[idx].src;
+      lbImg.alt = imgs[idx].alt || '';
+      lbCount.textContent = (idx + 1) + ' / ' + imgs.length;
+    }
+    function open(i) { show(i); lb.classList.add('open'); lb.setAttribute('aria-hidden', 'false'); document.body.style.overflow = 'hidden'; }
+    function close() { lb.classList.remove('open'); lb.setAttribute('aria-hidden', 'true'); document.body.style.overflow = ''; }
+    imgs.forEach(function (im, i) { im.addEventListener('click', function () { open(i); }); });
+    document.getElementById('lb-close').addEventListener('click', close);
+    document.getElementById('lb-prev').addEventListener('click', function (e) { e.stopPropagation(); show(idx - 1); });
+    document.getElementById('lb-next').addEventListener('click', function (e) { e.stopPropagation(); show(idx + 1); });
+    lb.addEventListener('click', function (e) { if (e.target === lb) close(); });
+    document.addEventListener('keydown', function (e) {
+      if (!lb.classList.contains('open')) return;
+      if (e.key === 'Escape') close();
+      else if (e.key === 'ArrowLeft') show(idx - 1);
+      else if (e.key === 'ArrowRight') show(idx + 1);
+    });
   })();
 </script>
 
