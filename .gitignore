@@ -5,3 +5,14 @@
 !/.gitignore
 !/index.html
 !/assets
+
+# assets 內只上傳網站實際使用的檔案，原始大圖不上傳
+/assets/*
+!/assets/hero-photo.jpg
+!/assets/README.md
+!/assets/event1-1.jpg
+!/assets/event1-2.jpg
+!/assets/event1-3.jpg
+!/assets/event1-4.jpg
+!/assets/event1-5.jpg
+!/assets/event1-6.jpg
